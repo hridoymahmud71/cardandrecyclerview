@@ -35,6 +35,15 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         //viewHolder.bind(this.personList.get(i));
         viewHolder.itemView.setTag(this.personList.get(i));
+
+        viewHolder.tvName.setText(this.personList.get(i).getName());
+        viewHolder.tvSurname.setText(this.personList.get(i).getSurname());
+
+        if(this.personList.get(i).getPreference().equals("bus")){
+            viewHolder.ivPref.setImageResource(R.drawable.bus);
+        }else{
+            viewHolder.ivPref.setImageResource(R.drawable.plane);
+        }
     }
 
     @Override
