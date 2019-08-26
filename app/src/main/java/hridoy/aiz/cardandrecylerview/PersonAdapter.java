@@ -16,11 +16,17 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     private Context context;
     private LayoutInflater layoutInflater;
     private List<Person> personList;
+    ItemClicked activity;
+
+    public interface ItemClicked{
+        void onItemClicked(int i);
+    }
 
     public PersonAdapter(Context context, List<Person> personList){
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.personList = personList;
+        this.activity = (ItemClicked) context;
     }
 
     @NonNull
@@ -64,7 +70,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    activity.onItemClicked(personList.indexOf((Person) view.getTag()));
                 }
             });
         }
